@@ -12,6 +12,8 @@ const UNIVERSITY = process.env.UNIVERSITY_NAME||"UAegean";
 
 /* configuration */
 const config = require('./config.json');
+const configOrg2 = require('./configOrg2.json');
+const configOrg3 = require('./configOrg3.json');
 const peer = config.peer;
 const peerAddr = config.peerAddress;
 const channel = config.channelName;
