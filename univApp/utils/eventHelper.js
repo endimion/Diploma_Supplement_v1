@@ -41,6 +41,56 @@ exports.registerEventHubForOrg = function(org,chaincodeName,eventName, successCa
   });
 }
 
+
+exports.registerEventHubForOrg2 = function(org,chaincodeName,eventName, successCallback){
+
+  let client = helper.getClientForOrg(org);
+  helper.getOrgAdmin(org).then((admin) => { //this is required to add a user to the client object
+  	let caCert = fs.readFileSync(path.join(__dirname,
+  		"../artifacts/channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"));
+  	// console.log(data);
+  	let eh = client.newEventHub();
+  	eh.setPeerAddr("grpcs://172.17.0.1:8053", {
+  		 pem: Buffer.from(caCert).toString(),
+  		'ssl-target-name-override': "peer0.org2.example.com"
+  	});
+
+  	let eventObj = eh.registerChaincodeEvent(chaincodeName, eventName,
+                    event =>{
+                            let unEncodedEvnet = String.fromCharCode.apply(null, event.payload);
+                            successCallback(unEncodedEvnet,eh,eventObj);
+                    },
+  									err => {console.log(err)});
+  	eh.connect();
+  });
+}
+
+
+exports.registerEventHubForOrg3 = function(org,chaincodeName,eventName, successCallback){
+
+  let client = helper.getClientForOrg(org);
+  helper.getOrgAdmin(org).then((admin) => { //this is required to add a user to the client object
+  	let caCert = fs.readFileSync(path.join(__dirname,
+  		"../artifacts/channel/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/ca.crt"));
+  	// console.log(data);
+  	let eh = client.newEventHub();
+  	eh.setPeerAddr("grpcs://172.17.0.1:9053", {
+  		 pem: Buffer.from(caCert).toString(),
+  		'ssl-target-name-override': "peer0.org3.example.com"
+  	});
+
+  	let eventObj = eh.registerChaincodeEvent(chaincodeName, eventName,
+                    event =>{
+                            let unEncodedEvnet = String.fromCharCode.apply(null, event.payload);
+                            successCallback(unEncodedEvnet,eh,eventObj);
+                    },
+  									err => {console.log(err)});
+  	eh.connect();
+  });
+}
+
+
+
 /**
   function that can be used as a callback (eventHandler) at the
   invokeChaincode = function(peersUrls, channelName, chaincodeName, fcn, args, username, org, eventHandler)
