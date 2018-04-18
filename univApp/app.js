@@ -36,7 +36,7 @@ evHelper.registerEventHubForOrg2(org2,chaincode,'evtsender', event => {
     processEvent(event);
 });
 
-evHelper.registerEventHubForOrg2(org3,chaincode,'evtsender', event => {
+evHelper.registerEventHubForOrg3(org3,chaincode,'evtsender', event => {
     // // console.log(" app.js::  Received Event:");
 		// // console.log(event);
     processEvent(event);
