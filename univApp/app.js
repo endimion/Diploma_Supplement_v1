@@ -16,10 +16,12 @@ const peer = config.peer;
 const peerAddr = config.peerAddress;
 const channel = config.channelName;
 const org = config.org;
+const org2 = configOrg2.org;
+const org3 = configOrg3.org;
 const chaincode = config.chaincode;
 
 
-evHelper.registerEventHubForOrg("org1",chaincode,'evtsender', event => {
+evHelper.registerEventHubForOrg(org,chaincode,'evtsender', event => {
     // // console.log(" app.js::  Received Event:");
 		// // console.log(event);
     processEvent(event);
