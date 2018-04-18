@@ -93,10 +93,21 @@ exports.userDetailsFromToken = (req,res) =>{
         let result = JSON.parse(token.sub);
         result.eid = stripchar.RSExceptUnsAlpNum(result.eid);
         if(!result.firstName){
-          result.firstName = result.currentGivenName;
+          if(result.currentGivenName.indexOf(",") > 0){
+             result.natFirstName = result.currentFamilyName.split(",")[1];
+             result.firstName = result.currentFamilyName.split(",")[0];;
+          }else{
+            result.firstName = result.currentGivenName;
+          }
+
         }
         if(!result.familyName){
-          result.familyName = result.currentFamilyName;
+          if(result.currentFamilyName.indexOf(",") > 0){
+              result.natFamilyName = result.currentFamilyName.split(",")[1];
+              result.familyName = result.currentFamilyName.split(",")[0];
+          }else{
+            result.familyName = result.currentFamilyName;
+          }
         }
         result.userName = result.firstName+"_"+result.familyName;
         resolve(result);
