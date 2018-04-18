@@ -4,6 +4,7 @@ node_modules
 studentApp/node_modules
 studentBack/node_modules
 studentApp/sessions
+studentBack/sessions
 univApp/node_modules
 univApp/sessions
 #studentApp/artifacts/channel
