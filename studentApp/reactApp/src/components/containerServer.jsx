@@ -32,6 +32,8 @@ import EditSup from "./editSupplement.jsx"
 import RequestSupplementCard from "./requestSupplementCard.jsx"
 import ServerLoading from "./serverLoading.jsx"
 import AccountInfo from "./accountInfo.jsx"
+import InviteView from "./viewByInvite.jsx"
+
 
 @connect( (store)=>{
   return { user: store.user.user,
@@ -84,20 +86,9 @@ export default class Container extends React.Component {
       let request = () => <div><NavigationBar user={user}/><RequestSupplementCard name={"user"} eID={"eID"}/></div>;
       let edit = ({match}) => (<div><NavigationBar user={user}/><EditSup match={match}/></div> );
       let inviteView = ({match}) => {
-                  if(user === undefined || user.firstName ==  undefined){
-                    // return <Redirect from="/app" to="/login" push />
-                    const cookies = new Cookies();
-                    console.log("will set cookie!!");
-                    cookies.set('inviteHash', match.params.id, { path: '/', maxAge:120 });
-                    console.log(cookies.get("inviteHash"));
-                    window.location = '/login';
-                  }else{
-                    //<SharedSup match={match}/>
-                    // return (<div><NavigationBar user={user}/></div> )
                     return <div><NavigationBar user={user}/><InviteView inviteId={match.params.id}/></div>;
-                  }
-      };
-        let account = () =>  <div><NavigationBar user={user}/><AccountInfo/></div>;
+      };        
+      let account = () =>  <div><NavigationBar user={user}/><AccountInfo/></div>;
 
 
       return  <StaticRouter location={this.props.location} context={this.props.context}>

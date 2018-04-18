@@ -89,7 +89,8 @@ app.get('/app*', (req, res) => {
   if(url.indexOf("invite") > -1 ){
     let parts = url.split("/");
     let invId = parts[parts.length -1];
-    res.cookie('inviteHash',invId, {maxAge: 120000, httpOnly: true }); //two minutes cookie
+    res.cookie('inviteHash',invId, {maxAge: 120000, httpOnly: true });
+    console.log("invite found");
   }
 
   util.userDetailsFromToken(req,res).then( (usr) => {
