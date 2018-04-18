@@ -102,12 +102,12 @@ exports.userDetailsFromToken = (req,res) =>{
 
         }
         if(result.firstName.indexOf(",") > 0){
-           result.natFirstName = result.firstName.split(",")[0];
-           result.firstName = result.firstName.split(",")[1];;
+           result.intFirstName = result.firstName.split(",")[1];
+           result.firstName = result.firstName.split(",")[0];;
         }
         if(result.familyName.indexOf(",") > 0){
-            result.natFamilyName = result.familyName.split(",")[0];
-            result.familyName = result.familyName.split(",")[1];
+            result.intFamilyName = result.familyName.split(",")[1];
+            result.familyName = result.familyName.split(",")[0];
         }
 
         result.userName = result.firstName+"_"+result.familyName;

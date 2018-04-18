@@ -54,7 +54,7 @@ export default class  AccountInfo extends React.Component {
                         </div>
                         <div className="input-field col s12">
                           <input  id="currentFamilyName" style={{marginTop: "3em",color:"black"}} value={user.natFamilyName} type="text" disabled />
-                            <label for="currentFamilyName"   data-success="right">Family Name in Native Tongue</label>
+                            <label for="currentFamilyName"   data-success="right">Family Name in English</label>
                         </div>
                         <div className="input-field col s12">
                           <input  id="currentGivenName"  style={{marginTop: "3em",color:"black"}} value={user.firstName} type="text" disabled />
@@ -62,7 +62,7 @@ export default class  AccountInfo extends React.Component {
                         </div>
                         <div className="input-field col s12">
                           <input  id="currentGivenName"  style={{marginTop: "3em",color:"black"}} value={user.natFirstName} type="text" disabled />
-                            <label for="currentGivenName"   data-success="right">Given Name in Native Tongue</label>
+                            <label for="currentGivenName"   data-success="right">Given Name in English</label>
                         </div>
                         <div className="input-field col s12">
                           <input  id="dateOfBirth" type="text" style={{marginTop: "3em",color:"black"}} value={user.dateOfBirth} disabled />
