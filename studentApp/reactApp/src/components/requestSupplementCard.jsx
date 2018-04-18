@@ -113,6 +113,7 @@ export default class RequestSupplementCard extends React.Component {
                   <select ref="mySelectBox">
                     <option key="UAegean" value='UAegean'>University of the Aegean</option>
                     <option key="UAgr" value='UAgr'>Agricultural University of Athens</option>
+                    <option key="UniPi" value='UniPi'>University of Piraeus</option>
                    </select>
                    <label style={{left:"0"}}>University</label>
                 </div>
