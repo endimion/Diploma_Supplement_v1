@@ -47,7 +47,7 @@ export default class Container extends React.Component {
   // };
 
     componentWillMount(){
-      const { cookies } = this.props;
+      // const { cookies } = this.props;
     }
 
     render(){
@@ -71,11 +71,11 @@ export default class Container extends React.Component {
       let inviteView = ({match}) => {
                   if(user === undefined || user.firstName ==  undefined){
                     // return <Redirect from="/app" to="/login" push />
-                    // const cookies = new Cookies();
-                    // console.log("will set cookie!!");
-                    // cookies.set('inviteHash', match.params.id, { path: '/' });
-                    // console.log(cookies.get("inviteHash"));
-                    // window.location = '/login';
+                    const cookies = new Cookies();
+                    console.log("will set cookie!!");
+                    cookies.set('inviteHash', match.params.id, { path: '/', maxAge:'120' });
+                    console.log(cookies.get("inviteHash"));
+                    window.location = '/login';
                   }else{
                     //<SharedSup match={match}/>
                     // return (<div><NavigationBar user={user}/></div> )
