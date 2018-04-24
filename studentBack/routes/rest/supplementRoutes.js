@@ -92,6 +92,36 @@ router.get('/pdf/:supId',authorizeAll,(req,res) =>{
 });
 
 
+
+router.get('/raw/:supId',authorizeAll,(req,res) =>{
+  getUserDetails(req,res).then( details =>{
+      let userEid = details.eid;
+      let supId = req.params.supId;
+      basic.queryChaincode(peer, channel, chaincode, [supId,userEid], "getSupplementById", userEid, org)
+      .then( resp =>{
+        if(resp.indexOf("error") != -1){
+          res.status(401).json(resp);
+        }
+        try{
+          JSON.parse(resp);
+          // let ds = JSON.parse(resp);
+          res.json(resp);
+        }catch(err){
+          console.log("supplementRoutes:: response not a json!");
+          res.status(500).send(err);
+        }
+
+      }).catch(err =>{
+          console.log("ERROR::");
+          console.log(err);
+          res.status(500).send(err);
+      });
+
+    });
+});
+
+
+
 /*
   returns a JSON of the  DS with the given ID provided loggedin user
   can retrieve it
