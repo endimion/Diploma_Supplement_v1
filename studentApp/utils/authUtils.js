@@ -82,40 +82,46 @@ exports.userDetailsFromToken = (req,res) =>{
   // }
 
   return new Promise( (resolve,reject) =>{
-    jwt.verify(token,secretKey,{ algorithms: ['HS256']},function(err,token){
-      if(err){
-        console.log(err);
-        reject(err);
-        return {"message":"User not authorized"};
-      }else{
-        // console.log(token);
-        console.log(token.sub);
-        let result = JSON.parse(token.sub);
-        result.eid = stripchar.RSExceptUnsAlpNum(result.eid);
-        //** ISS webapp returns the values as firstName,lastName, while webapp 2.0 as currentFamilyName,currentGivenName
-        //**
-        if(!result.firstName){
-            result.firstName = result.currentGivenName;
-                  }
-        if(!result.familyName){
-          result.familyName = result.currentFamilyName;
+    if(token && token !== "" && token !== "{}"){
+      jwt.verify(token,secretKey,{ algorithms: ['HS256']},function(err,token){
+        if(err){
+          console.log(err);
+          reject(err);
+          return {"message":"User not authorized"};
+        }else{
+          // console.log(token);
+          console.log(token.sub);
+          if(token.sub == "{}") reject("no user found in jwt");
+          let result = JSON.parse(token.sub);
+          result.eid = stripchar.RSExceptUnsAlpNum(result.eid);
+          //** ISS webapp returns the values as firstName,lastName, while webapp 2.0 as currentFamilyName,currentGivenName
+          //**
+          if(!result.firstName){
+              result.firstName = result.currentGivenName;
+                    }
+          if(!result.familyName){
+            result.familyName = result.currentFamilyName;
 
-        }
-
-        if(result.firstName && result.familyName){
-          if(result.firstName.indexOf(",") > 0){
-             result.intFirstName = result.firstName.split(",")[1];
-             result.firstName = result.firstName.split(",")[0];;
           }
-          if(result.familyName.indexOf(",") > 0){
-              result.intFamilyName = result.familyName.split(",")[1];
-              result.familyName = result.familyName.split(",")[0];
-          }
-          result.userName = result.firstName+"_"+result.familyName;
-        }
 
-        resolve(result);
-      }
-    });
+          if(result.firstName && result.familyName){
+            if(result.firstName.indexOf(",") > 0){
+               result.intFirstName = result.firstName.split(",")[1];
+               result.firstName = result.firstName.split(",")[0];;
+            }
+            if(result.familyName.indexOf(",") > 0){
+                result.intFamilyName = result.familyName.split(",")[1];
+                result.familyName = result.familyName.split(",")[0];
+            }
+            result.userName = result.firstName+"_"+result.familyName;
+          }
+
+          resolve(result);
+        }
+      });
+    }else{
+      reject("error jwt format");
+    }
+
   });
 }

@@ -120,6 +120,9 @@ app.get('/app*', (req, res) => {
 
   }).catch(err=>{
     console.log(err);
+    if(err === "no user found in jwt"){
+        res.redirect("/loginFail");
+    }
     res.redirect("/login/landing");
   });
 
