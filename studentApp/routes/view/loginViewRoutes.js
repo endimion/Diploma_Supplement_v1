@@ -42,3 +42,8 @@ router.get('/eIDAS', function (req, res) {
     res.redirect(303, process.env.LOGIN_ADDR);
   // }
 });
+
+
+router.get('/loginFail',(req,res)=>{
+   res.render('errorMessage',{'message':'Non-sucessful authentication. Please, return to the home page and re-initialize the process. If the authentication fails again, please contact your national eID provider'});
+});
