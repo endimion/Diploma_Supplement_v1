@@ -86,6 +86,7 @@ let options = {
 
 app.get('/app*', (req, res) => {
   let url = req.url;
+  console.log(url);
   if(url && url.indexOf("invite") > -1 ){
     let parts = url.split("/");
     let invId = parts[parts.length -1];
