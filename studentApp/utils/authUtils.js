@@ -101,16 +101,19 @@ exports.userDetailsFromToken = (req,res) =>{
           result.familyName = result.currentFamilyName;
 
         }
-        if(result.firstName.indexOf(",") > 0){
-           result.intFirstName = result.firstName.split(",")[1];
-           result.firstName = result.firstName.split(",")[0];;
-        }
-        if(result.familyName.indexOf(",") > 0){
-            result.intFamilyName = result.familyName.split(",")[1];
-            result.familyName = result.familyName.split(",")[0];
+
+        if(result.firstName && result.familyName){
+          if(result.firstName.indexOf(",") > 0){
+             result.intFirstName = result.firstName.split(",")[1];
+             result.firstName = result.firstName.split(",")[0];;
+          }
+          if(result.familyName.indexOf(",") > 0){
+              result.intFamilyName = result.familyName.split(",")[1];
+              result.familyName = result.familyName.split(",")[0];
+          }
+          result.userName = result.firstName+"_"+result.familyName;
         }
 
-        result.userName = result.firstName+"_"+result.familyName;
         resolve(result);
       }
     });

@@ -86,7 +86,7 @@ let options = {
 
 app.get('/app*', (req, res) => {
   let url = req.url;
-  if(url.indexOf("invite") > -1 ){
+  if(url && url.indexOf("invite") > -1 ){
     let parts = url.split("/");
     let invId = parts[parts.length -1];
     res.cookie('inviteHash',invId, {maxAge: 120000, httpOnly: true });
