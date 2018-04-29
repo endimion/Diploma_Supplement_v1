@@ -99,9 +99,12 @@ app.get('/app*', (req, res) => {
     const css = new Set(); // CSS for all rendered React components
     const staticContext = { insertCss: (...styles) => styles.forEach(style => css.add(style._getCss())) };
     const theUser= usr;
+    console.log("staticConetxt" ,staticContext);
     // Grab the initial state from our Redux store
+    //
     const preloadedState = {...Store.getState(),
                             user:{user:{...usr, lastName: usr.familyName}}}
+
     const appString = renderToString(
       <Provider store={Store}>
         <CookiesProvider>
@@ -134,6 +137,7 @@ app.get('/app*', (req, res) => {
 
 //start the server
 const server = app.listen(port,"127.0.0.1", (err,res) => {
+
   if(err){
     console.log("error!!", err);
   }else{
