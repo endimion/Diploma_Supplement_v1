@@ -15,6 +15,7 @@ export default ({ body, title,preloadedState,css}) => {
     	<!-- Import materialize.css -->
     	<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet">
       <style type="text/css">${[...css].join('')}</style>
+      <link href="/public/navbar.css" rel="stylesheet">
       <title>Diploma Supplement</title>
     </head>
       <body>
@@ -29,7 +30,6 @@ export default ({ body, title,preloadedState,css}) => {
            window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
          </script>
         <script src="/main.bundle.js"></script>
-        <link href="/public/navbar.css" rel="stylesheet">
       </body>
     </html>
 
