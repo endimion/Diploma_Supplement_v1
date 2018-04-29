@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Navbar, NavItem, Button, Icon} from 'react-materialize'
 import {Link,NavLink} from 'react-router-dom'
 import SideNavigation from "./sideNav.jsx"
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
 
 import '../styles/navbar.css'
 
