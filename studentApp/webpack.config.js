@@ -8,7 +8,6 @@ var nodeExternals = require('webpack-node-externals');
 
 var isProduction = process.env.NODE_ENV === 'production';
 var productionPluginDefine = isProduction ? [
-  new ExtractTextPlugin("styles.css")
   new webpack.DefinePlugin({'process.env': {'NODE_ENV': JSON.stringify('production')}}),
 ] : [];
 var clientLoaders = isProduction ? productionPluginDefine.concat([
@@ -17,7 +16,6 @@ var clientLoaders = isProduction ? productionPluginDefine.concat([
   new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false }, sourceMap: false })
 ]) : [];
 
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var commonLoaders = [
   {
@@ -100,21 +98,21 @@ module.exports = [{
    plugins: productionPluginDefine,
    module: {
 
-     rules: [
-       {
-         test: /\.css$/,
-         use: [
-           'isomorphic-style-loader',
-           {
-             loader: 'css-loader',
-             options: {
-               importLoaders: 1
-             }
-           },
-           'postcss-loader'
-         ]
-       }
-       ]
+     // rules: [
+     //   {
+     //     test: /\.css$/,
+     //     use: [
+     //       'isomorphic-style-loader',
+     //       {
+     //         loader: 'css-loader',
+     //         options: {
+     //           importLoaders: 1
+     //         }
+     //       },
+     //       'postcss-loader'
+     //     ]
+     //   }
+     //   ]
 
     loaders: [
        {
@@ -127,7 +125,7 @@ module.exports = [{
               importLoaders: 1
             }
           },
-          // 'postcss-loader'
+          'postcss-loader'
         ]
        },
         {
