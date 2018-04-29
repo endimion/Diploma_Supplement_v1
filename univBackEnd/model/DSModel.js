@@ -73,7 +73,7 @@ let dsSchema = new Schema({
 
 
 
-let DiplomaSupplement = connection.model('DiplomaSupplement', dsSchema);
+let DiplomaSupplement = connection.model('DiplomaSupplement', dsSchema,'diplomasupplements');
 
 // make this available to our users in our Node applications
 module.exports.Schema = DiplomaSupplement;

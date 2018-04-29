@@ -42,7 +42,9 @@
                         "NODE_ENV": "production",
                         "BASE_URL":"/univ/","LOGIN_ADDR":"http://dss.aegean.gr:8080/login",
                          "AGR_BACK_END":"infolab.aua.gr",
-                         "AGR_BACK_END_PORT":"37171"   
+                         "AGR_BACK_END_PORT":"37171",
+                         "UNIPI_BACK_END":"http://83.212.102.140",
+                         "UNIPI_BACK_END_PORT":"50051",
                       }
   },
 

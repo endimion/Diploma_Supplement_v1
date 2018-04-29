@@ -11,7 +11,7 @@ const utf8 = require('utf8');
 module.exports.findAllDiplomaByCriterria = function(criteria){
   console.log("will query " );
   console.log(criteria);
-  console.log("By " + criteria, utf8.decode(criteria.Name))  ;
+  console.log("By " + JSON.stringify(criteria), utf8.decode(criteria.Name))  ;
   return DiplomaSupplement.find({
     'Holder_Info.StudentId':criteria.UniId,
     'Holder_Info.Name':utf8.decode(criteria.Name),

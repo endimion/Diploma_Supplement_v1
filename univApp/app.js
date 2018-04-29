@@ -6,6 +6,7 @@ const evHelper = require('./utils/eventHelper.js');
 // const dsService = require('./service/DSService.js');
 const aegeanBkService = require('./service/AegeanBackEndService.js')
 const agriBkService = require('./service/AgriBackEndService.js')
+const uniPiBkService = require('./service/AgriBackEndService.js')
 const hash = require('hash.js');
 const signService = require('./service/SignService.js');
 const UNIVERSITY = process.env.UNIVERSITY_NAME||"UAegean";
@@ -55,6 +56,11 @@ let processEvent = function(event){
   if(pubReq.University == "UAgr"){
     bkService = agriBkService;
   }
+
+  if(pubReq.University == "UniPi"){
+    bkService = uniPiBkService;
+  }
+
 
   if(pubReq.University === UNIVERSITY){
     bkService.findAllDiplomaByCriterria(pubReq).then(result =>{
