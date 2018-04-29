@@ -8,7 +8,8 @@ var nodeExternals = require('webpack-node-externals');
 
 var isProduction = process.env.NODE_ENV === 'production';
 var productionPluginDefine = isProduction ? [
-  new webpack.DefinePlugin({'process.env': {'NODE_ENV': JSON.stringify('production')}})
+  new ExtractTextPlugin("styles.css")
+  new webpack.DefinePlugin({'process.env': {'NODE_ENV': JSON.stringify('production')}}),
 ] : [];
 var clientLoaders = isProduction ? productionPluginDefine.concat([
   new webpack.optimize.DedupePlugin(),
@@ -16,6 +17,7 @@ var clientLoaders = isProduction ? productionPluginDefine.concat([
   new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false }, sourceMap: false })
 ]) : [];
 
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var commonLoaders = [
   {
@@ -40,24 +42,25 @@ module.exports = [{
   plugins: [new webpack.DefinePlugin({
               'process.env.NODE_ENV': JSON.stringify('production')
               }),
-              new webpack.optimize.UglifyJsPlugin()
+              new webpack.optimize.UglifyJsPlugin(),
+              new ExtractTextPlugin("styles.css")
             ],
 
   module: {
     rules: [
-     {
-       test: /\.css$/, //use: ['style-loader', 'css-loader'],
-       use: [
-          'isomorphic-style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1
-            }
-          },
-          // 'postcss-loader'
-        ]
-     },
+      {
+         test: /\.css$/,
+         use: [
+           'isomorphic-style-loader',
+           {
+             loader: 'css-loader',
+             options: {
+               importLoaders: 1
+             }
+           },
+           'postcss-loader'
+         ]
+       },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: ['file-loader']
@@ -96,6 +99,22 @@ module.exports = [{
    externals: nodeExternals(),
    plugins: productionPluginDefine,
    module: {
+
+     rules: [
+       {
+         test: /\.css$/,
+         use: [
+           'isomorphic-style-loader',
+           {
+             loader: 'css-loader',
+             options: {
+               importLoaders: 1
+             }
+           },
+           'postcss-loader'
+         ]
+       }
+       ]
 
     loaders: [
        {
