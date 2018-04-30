@@ -33,7 +33,7 @@ export default class HomePage extends React.Component {
             <span className="card-title" style={imgTitleStyle}>Manage Supplements</span>
           </div>
           <div className="card-content">
-            <p>View published Supplements on the Blockchain | Manage User Access VIEW SUPPLEMENTS </p>
+            <p>View published Supplements on the Blockchain | Manage User Access </p>
           </div>
           <div className="card-action">
             <Link to="/app/manage" style={{color:"#06114e"}}>VIEW SUPPLEMENTS</Link>
