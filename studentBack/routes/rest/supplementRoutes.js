@@ -278,20 +278,25 @@ router.post('/inviteByMail',authorizeAll,(req,res) =>{
 
 
     userDetails.then( details =>{
-      recipients.forEach(recipient =>{
+      recipients.forEach( emailAddress =>{
         let inviteHash = supUtils.generateSupplementHash(email,supId,details.userName);
         let eid = details.eid;
 
+        let senderEngName =  details.currentGivenName.indexOf(",")>0?details.currentGivenName.split(",")[1]:details.currentGivenName;
+        let senderEngLastName = details.currentFamilyName.indexOf(",")>0?details.currentFamilyName.split(",")[1]:details.currentFamilyName;
+        //let senderName =
+
+
         let body = `Hi!,
-                    <p>You're receiving this transactional email message because <applicant Name, applicant Surname in EN> ( <applicant Name, applicant Surname in GR>) wants to share with you an e-Diploma Supplement.</p>
-                    <p>Click`+`<a href="`+ process.env.SRV_ADDR + `/app/invite/` +inviteHash +`">HERE</a>`+`to get the shared e-Diiploma Supplement in
+                    <p>You're receiving this transactional email message because`+senderEngName +` `+senderEngLastName+` wants to share with you an e-Diploma Supplement.</p>
+                    <p>Click`+`<a href="`+ process.env.SRV_ADDR + `/app/invite/` +inviteHash +`"> HERE </a>`+`to get the shared e-Diiploma Supplement in
                     <ul>
                      <li>pdf form</li>
                      <li>machine readable form (xml)</li>
                     </ul>
                     </p>
                     <p>
-                      For Instructions of How To Use e-Diploma Supplement Service, , please click on`+ `<a href="https://docs.google.com/document/d/1TgoAwXimaL1Q6jqIxEM1qLN9VwHBZr8zkMQ8fonOYa0/edit">EXPLORE</a>`+`
+                      For Instructions of How To Use e-Diploma Supplement Service, , please click on`+ `<a href="https://docs.google.com/document/d/1TgoAwXimaL1Q6jqIxEM1qLN9VwHBZr8zkMQ8fonOYa0/edit"> EXPLORE </a>`+`
                       This email is sent from an automated account which is not monitored, so we are not able to respond to replies to this email.
                       Thank you! The administration team
                     </p>
@@ -306,7 +311,7 @@ router.post('/inviteByMail',authorizeAll,(req,res) =>{
         .then(resp => {
           // let emailBody = '<p>Click<a href="'+ process.env.SRV_ADDR + '/app/invite/'
           //                   +inviteHash +'"> here</a> to view the shared diploma supplement </p>';
-          emailUtil.sendEmail(email,body);
+          emailUtil.sendEmail(emailAddress,body);
 
         }).catch(err =>{
           res.status(500).send(err);
