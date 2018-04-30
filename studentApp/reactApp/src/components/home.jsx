@@ -33,10 +33,10 @@ export default class HomePage extends React.Component {
             <span className="card-title" style={imgTitleStyle}>Manage Supplements</span>
           </div>
           <div className="card-content">
-            <p>View published supplements, manage user access</p>
+            <p>View published Supplements on the Blockchain | Manage User Access VIEW SUPPLEMENTS </p>
           </div>
           <div className="card-action">
-            <Link to="/app/manage">View Supplements</Link>
+            <Link to="/app/manage" style={{color:"#06114e"}}>VIEW SUPPLEMENTS</Link>
           </div>
         </div>;
 
@@ -46,10 +46,10 @@ export default class HomePage extends React.Component {
             <span className="card-title" style={imgTitleStyle}>Request Supplement</span>
           </div>
           <div className="card-content">
-            <p>Request the publication of a Diploma Supplement.</p>
+            <p>Request the publication of a Diploma Supplement on the Blockchain</p>
           </div>
           <div className="card-action">
-            <Link to="/app/request">Request</Link>
+            <Link to="/app/request" style={{color:"#06114e"}}>SUBMIT A REQUEST</Link>
 
           </div>
         </div>;
@@ -60,10 +60,10 @@ export default class HomePage extends React.Component {
             <span className="card-title" style={imgTitleStyle}>Manage Account</span>
           </div>
           <div className="card-content">
-            <p>Review your account details</p>
+            <p>Review Your Profile Details</p>
           </div>
           <div className="card-action">
-            <Link to="/app/account">Review Account</Link>
+            <Link to="/app/account" style={{color:"#06114e"}}>MY PROFILE</Link>
           </div>
         </div>;
 
