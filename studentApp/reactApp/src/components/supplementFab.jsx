@@ -17,14 +17,14 @@ export default class SupFab extends React.Component {
 
       return (
           <div className="fixed-action-btn horizontal click-to-toggle" style={{position: "absolute", right:" 24px",bottom:"1.2em",zIndex: "997"}}>
-              <a className="btn-floating btn-medium red"><i className="material-icons">share</i></a>
+              <a className="btn tooltipped btn-floating btn-medium red" data-position="top" data-tooltip="Share" ><i className="material-icons">share</i></a>
               <ul>
-                  <li key={"mail"}><a className="btn-floating yellow darken-1 modal-trigger"
+                  <li key={"mail"}><a className="btn tooltipped btn-floating yellow darken-1 modal-trigger" data-position="top" data-tooltip="Share by eMail"
                                       style={{transform: "scaleY(0.4) scaleX(0.4) translateY(0px) translateX(40px)", opacity: "0"}}
                                       onClick={(e) =>{this.props.mailModal(this.props.supId)}}>
                                       <i className="material-icons">mail</i></a>
                   </li>
-                  <li key={"qr"}><a className="btn-floating blue darken-1 modal-trigger"
+                  <li key={"qr"}><a className="btn tooltipped btn-floating blue darken-1 modal-trigger" data-position="top" data-tooltip="Share by QR code"
                                     style={{transform: "scaleY(0.4) scaleX(0.4) translateY(0px) translateX(40px)", opacity: "0"}}
                                     onClick={(e) =>{this.props.qrModal(this.props.supId)}}><i className="material-icons">dashboard</i></a></li>
               </ul>
