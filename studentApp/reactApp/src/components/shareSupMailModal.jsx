@@ -48,6 +48,7 @@ export default class ShareByMailModal extends React.Component {
 
     return <div>
             <Row>
+            <div className="col s12">Add recipient email addresses separated by ";" or ","</div>
              <Input id={"email"} type="email" label="Email" s={12} ><Icon>account_circle</Icon></Input>
             </Row>
             <Button onClick={ (e) =>{

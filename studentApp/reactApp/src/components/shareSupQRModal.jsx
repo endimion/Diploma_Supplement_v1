@@ -59,6 +59,7 @@ export default class ShareByQRModal extends React.Component {
 
     return <div>
             <Row>
+              <div className="col s12">Add a <b>single</b> recipient email address</div>
              <Input id={"qremail"} type="email" label="Email" s={12} ><Icon>account_circle</Icon></Input>
             </Row>
             <Button onClick={(e)=>{
