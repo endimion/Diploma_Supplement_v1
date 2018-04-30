@@ -75,7 +75,7 @@ export default class  AccountInfo extends React.Component {
                       </div>
                       <div className="row">
                           <div className="col s12">
-                              <a class="waves-effect waves-teal btn-flat" onClick={e =>this.logoutUser()}>Log out</a>
+                              <a class="btn waves-effect waves-teal" onClick={e =>this.logoutUser()}>Log out</a>
                           </div>
                       </div>
                     </form>
