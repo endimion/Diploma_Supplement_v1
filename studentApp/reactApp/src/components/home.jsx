@@ -73,10 +73,10 @@ export default class HomePage extends React.Component {
 
         return (  <div className="main container" style={{marginTop: "3%"}}>
               <Row key={1}>
+                <Col s={12} m={6}className='grid-example'>{requestCard}</Col>
                 <Col s={12} m={6} className='grid-example'>
                     {manageCard}
                 </Col>
-                <Col s={12} m={6}className='grid-example'>{requestCard}</Col>
               </Row>
               <Row>
                 <Col s={12} m={6} className='grid-example'>
