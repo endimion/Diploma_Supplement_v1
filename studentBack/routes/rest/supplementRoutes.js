@@ -284,14 +284,14 @@ router.post('/inviteByMail',authorizeAll,(req,res) =>{
 
         let body = `Hi!,
                     <p>You're receiving this transactional email message because <applicant Name, applicant Surname in EN> ( <applicant Name, applicant Surname in GR>) wants to share with you an e-Diploma Supplement.</p>
-                    <p>Click`+'<a href="'+ process.env.SRV_ADDR + '/app/invite/' +inviteHash +'">HERE</a>'+`to get the shared e-Diiploma Supplement in
+                    <p>Click`+`<a href="`+ process.env.SRV_ADDR + `/app/invite/` +inviteHash +`">HERE</a>`+`to get the shared e-Diiploma Supplement in
                     <ul>
                      <li>pdf form</li>
                      <li>machine readable form (xml)</li>
                     </ul>
                     </p>
                     <p>
-                      For Instructions of How To Use e-Diploma Supplement Service, , please click on`'<a href="https://docs.google.com/document/d/1TgoAwXimaL1Q6jqIxEM1qLN9VwHBZr8zkMQ8fonOYa0/edit">EXPLORE</a>'+`
+                      For Instructions of How To Use e-Diploma Supplement Service, , please click on`+ `<a href="https://docs.google.com/document/d/1TgoAwXimaL1Q6jqIxEM1qLN9VwHBZr8zkMQ8fonOYa0/edit">EXPLORE</a>`+`
                       This email is sent from an automated account which is not monitored, so we are not able to respond to replies to this email.
                       Thank you! The administration team
                     </p>
