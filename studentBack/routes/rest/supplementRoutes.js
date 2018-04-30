@@ -273,21 +273,46 @@ router.post('/inviteByMail',authorizeAll,(req,res) =>{
     let supId = req.body.supId;
     let email = req.body.email;
     // console.log(supId + email);
-    userDetails.then( details =>{
-      let inviteHash = supUtils.generateSupplementHash(email,supId,details.userName);
-      let eid = details.eid;
-      // console.log(inviteHash + eid);
-      basic.invokeChaincode([peerAddr], channel, chaincode, "addDiplomaSupplementInvite",
-														['{"DSHash":"'+inviteHash+'", "DSId":"'+supId+'","Email":"'+email+'"}',eid],eid, org)
-      .then(resp => {
-        let emailBody = '<p>Click<a href="'+ process.env.SRV_ADDR + '/app/invite/'
-                          +inviteHash +'"> here</a> to view the shared diploma supplement </p>';
-        emailUtil.sendEmail(email,emailBody);
+    //
+    let recipients = email.split(/[\s,;]+/);
 
-        res.status(200).json(resp);
-      }).catch(err =>{
-        res.status(500).send(err);
+
+    userDetails.then( details =>{
+      recipients.forEach(recipient =>{
+        let inviteHash = supUtils.generateSupplementHash(email,supId,details.userName);
+        let eid = details.eid;
+
+        let body = `Hi!,
+                    <p>You're receiving this transactional email message because <applicant Name, applicant Surname in EN> ( <applicant Name, applicant Surname in GR>) wants to share with you an e-Diploma Supplement.</p>
+                    <p>Click`+'<a href="'+ process.env.SRV_ADDR + '/app/invite/' +inviteHash +'">HERE</a>'+`to get the shared e-Diiploma Supplement in
+                    <ul>
+                     <li>pdf form</li>
+                     <li>machine readable form (xml)</li>
+                    </ul>
+                    </p>
+                    <p>
+                      For Instructions of How To Use e-Diploma Supplement Service, , please click on`'<a href="https://docs.google.com/document/d/1TgoAwXimaL1Q6jqIxEM1qLN9VwHBZr8zkMQ8fonOYa0/edit">EXPLORE</a>'+`
+                      This email is sent from an automated account which is not monitored, so we are not able to respond to replies to this email.
+                      Thank you! The administration team
+                    </p>
+                    <p>
+                      e-Diploma Supplement Service
+                      email: edss@aegean.gr
+                    </p>
+                    ` ;
+        // console.log(inviteHash + eid);
+        basic.invokeChaincode([peerAddr], channel, chaincode, "addDiplomaSupplementInvite",
+                              ['{"DSHash":"'+inviteHash+'", "DSId":"'+supId+'","Email":"'+email+'"}',eid],eid, org)
+        .then(resp => {
+          // let emailBody = '<p>Click<a href="'+ process.env.SRV_ADDR + '/app/invite/'
+          //                   +inviteHash +'"> here</a> to view the shared diploma supplement </p>';
+          emailUtil.sendEmail(email,body);
+
+        }).catch(err =>{
+          res.status(500).send(err);
+        });
       });
+      res.status(200).json({status:"OK"});
     }).catch(err =>{
         res.status(500).send(err);
     });
