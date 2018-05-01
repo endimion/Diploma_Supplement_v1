@@ -36,6 +36,7 @@ export default class SupBtns extends React.Component {
         return (
           <span>
              {download}
+             {downloadRaw}
           </span>
         );
       }
