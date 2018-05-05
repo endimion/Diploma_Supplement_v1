@@ -95,22 +95,27 @@ app.get('/app*', (req, res) => {
   }
 
   util.userDetailsFromToken(req,res).then( (usr) => {
-    // const staticContext = {}
+    const staticContext = {}
     const css = new Set(); // CSS for all rendered React components
-    const staticContext = { insertCss: (...styles) => styles.forEach(style => css.add(style._getCss())) };
-    const theUser= usr;
-    console.log("staticConetxt" ,staticContext);
+    // const staticContext = { insertCss: (...styles) => styles.forEach(style => css.add(style._getCss())) };
+    // const theUser= usr;
+    // console.log("staticConetxt" ,staticContext);
     // Grab the initial state from our Redux store
     //
+    // console.log("USER:");
+    // console.log(usr);
+
     const preloadedState = {...Store.getState(),
                             user:{user:{...usr, lastName: usr.familyName}}}
+
+
+    let props = { location:req.url,context:{},user:{...usr, lastName: usr.familyName}};
+
 
     const appString = renderToString(
       <Provider store={Store}>
         <CookiesProvider>
-          <Container location={req.url}
-                     context={staticContext}
-                     usr={theUser}/>
+          <Container {...props} />
           </CookiesProvider>
         </Provider>
     );
