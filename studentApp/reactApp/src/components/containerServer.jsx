@@ -36,8 +36,8 @@ import InviteView from "./viewByInvite.jsx"
 
 
 @connect( (store)=>{
-  return { user: store.user.user,
-        };
+  // return { user: store.user.user,
+  //       };
 })
 export default class Container extends React.Component {
 
@@ -64,6 +64,9 @@ export default class Container extends React.Component {
 
     render(){
       const  {user,tweets,sideNav} = this.props;
+      // console.log("server user");
+      // // console.log(user);
+      // console.log(this.props);
 
       // let root = () => <div><NavigationBar user={user}/><Dummy user={user}/></div>;
 
@@ -87,7 +90,7 @@ export default class Container extends React.Component {
       let edit = ({match}) => (<div><NavigationBar user={user}/><EditSup match={match}/></div> );
       let inviteView = ({match}) => {
                     return <div><NavigationBar user={user}/><InviteView inviteId={match.params.id}/></div>;
-      };        
+      };
       let account = () =>  <div><NavigationBar user={user}/><AccountInfo/></div>;
 
 
