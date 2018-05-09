@@ -41,15 +41,15 @@ export default class RequestSupplementCard extends React.Component {
   }
 
   componentDidMount(){
-    $('.button-collapse').sideNav('hide');
+    // $('.button-collapse').sideNav('hide');
   }
 
   componentWillReceiveProps(nextProps){
-    $('.button-collapse').sideNav('hide');
+    // $('.button-collapse').sideNav('hide');
   }
 
   componentWillMount(){
-    $('.button-collapse').sideNav('hide');
+    // $('.button-collapse').sideNav('hide');
   }
 
   sendPubrequest(){

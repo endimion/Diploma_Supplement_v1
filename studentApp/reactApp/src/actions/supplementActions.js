@@ -12,6 +12,7 @@ axiosRetry(axios, { retries: 3 });
 export function  getSupplementsByEid(userEid, counter) {
 
    return  function(dispatch){
+        dispatch({  type: "RESTART_CLOCK",payload: ""} );
          dispatch({type: "GET_SUP"} );
          retryAxiosNtimes(4, 0, "/back/supplement/rest/view")
          .then(response =>{
@@ -38,6 +39,7 @@ export function  getSupplementsByEid(userEid, counter) {
 
 export function  removeSupplements() {
    return  function(dispatch){
+        dispatch({  type: "RESTART_CLOCK",payload: ""} );
          dispatch({type: "REMOVE_SUP_VIEW"} );
    }
 }
@@ -47,6 +49,7 @@ export function  removeSupplements() {
 export function  openShareByMail(supId) {
   return  function(dispatch){
      dispatch({type: "OPEN_SHARE_BY_MAIL"} );
+     dispatch({  type: "RESTART_CLOCK",payload: ""} );
       // console.log(supId)  ;
      $('#mailModal'+supId).modal('open');
   }
@@ -54,6 +57,7 @@ export function  openShareByMail(supId) {
 
 export function  shareByMail(_supId,_email) {
   return  function(dispatch){
+    dispatch({  type: "RESTART_CLOCK",payload: ""} );
   dispatch({type: "SHARE_SUP_STARTED"});
   let data = {email: _email, supId: _supId };
   retryAxiosNtimesPost(4,0,"/back/supplement/rest/inviteByMail",data)
@@ -74,6 +78,7 @@ export function  shareByMail(_supId,_email) {
 
 export function  openShareByQR(supId) {
   return  function(dispatch){
+    dispatch({  type: "RESTART_CLOCK",payload: ""} );
      dispatch({type: "OPEN_SHARE_BY_QR"} );
       console.log(supId)  ;
      $('#qrModal'+supId).modal('open');
@@ -83,6 +88,7 @@ export function  openShareByQR(supId) {
 export function  shareByQR(_supId,_email) {
   return  function(dispatch){
   dispatch({type: "SHARE_SUP_QR"});
+  dispatch({  type: "RESTART_CLOCK",payload: ""} );
       retryAxiosNtimesPost(4,0,"/back/supplement/rest/inviteByQR",{"supId":_supId, "email":_email})
        // axios.post("/back/supplement/rest/inviteByQR",{"supId":_supId, "email":_email})
         .then(response =>{

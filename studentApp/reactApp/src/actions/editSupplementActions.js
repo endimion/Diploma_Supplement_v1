@@ -18,6 +18,7 @@ export function addUserToRem(userEmail) {
 export function remUsers(supplementId,users) {
   return  function(dispatch){
      console.log("wil dispatch");
+     dispatch({  type: "RESTART_CLOCK",payload: ""} );
      dispatch({type:"MODAL_OPEN"});
      dispatch({type:"REM_USERS_SENT"});
      console.log("wil open");

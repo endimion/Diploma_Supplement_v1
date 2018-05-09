@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Navbar, NavItem, Button, Icon} from 'react-materialize'
 import {Link,NavLink} from 'react-router-dom'
 import SideNavigation from "./sideNav.jsx"
+import Clock from "./clock.jsx";
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 
 import '../styles/navbar.css'
@@ -43,9 +44,20 @@ export default class NavigationBar extends React.Component {
         <div class="navbar-fixed" >
           <nav>
             <div class="nav-wrapper">
-              <a href="#!" class="brand-logo" style={{paddingLeft: "2rem"}}>e-DS Service</a>
+
+              <a href="#!" class="brand-logo hide-on-large-only" style={{left:"30%"}}> <Clock/></a>
+              <a href="#!" class="brand-logo hide-on-large-only" style={{marginLeft: "5rem"}}> e-DS Service</a>
+
+              <a href="#!" class="brand-logo hide-on-med-and-down" > <Clock/></a>
+              <a href="#!" class="brand-logo hide-on-med-and-down" style={{marginLeft: "2rem"}}> e-DS Service</a>
               <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
               <ul class="right hide-on-med-and-down">
+                {/* <li>
+                  <a>
+                    <Clock/>
+                    <i class="material-icons">refresh</i>
+                  </a>
+                </li> */}
                 <li><a href="/app/home">Home</a></li>
                 <li><a href="/app/manage">Manage Supplements</a></li>
                 <li><a href="/app/request">Request new Supplement</a></li>

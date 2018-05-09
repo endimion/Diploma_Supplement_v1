@@ -13,12 +13,14 @@ import {retryAxiosNtimes,retryAxiosNtimesPost} from './utils'
 
 export function  updateCode(code) {
   return  function(dispatch){
+    dispatch({  type: "RESTART_CLOCK",payload: ""} );
       dispatch({type: "UPDATE_CODE",payload:code} );
 }};
 
 
 export function sendValidation(_code,invHash){
   return function(dispatch){
+    dispatch({  type: "RESTART_CLOCK",payload: ""} );
     dispatch({type: "SEND_UPDATE_CODE",payload:code} );
 
     // axios.post("/back/supplement/rest/invite/"+invHash+"/authorize",
@@ -39,6 +41,7 @@ export function sendValidation(_code,invHash){
 
 export function  getInvAndGenValCode(inviteId) {
   return  function(dispatch){
+    dispatch({  type: "RESTART_CLOCK",payload: ""} );
       dispatch({type: "GET_INV"} );
       console.log("the id is "+ inviteId);
       retryAxiosNtimes(4,0,"/back/supplement/rest/invite/"+inviteId)
@@ -83,6 +86,7 @@ export function  getInvAndGenValCode(inviteId) {
 
 export function  openShareByMail(supId) {
   return  function(dispatch){
+    dispatch({  type: "RESTART_CLOCK",payload: ""} );
      dispatch({type: "OPEN_SHARE_BY_MAIL"} );
       console.log(supId)  ;
      $('#mailModal'+supId).modal('open');
@@ -92,6 +96,7 @@ export function  openShareByMail(supId) {
 export function  shareByMail(_supId,_email) {
   return  function(dispatch){
       console.log("dispatching SHARE_SUP_STARTED");
+      dispatch({  type: "RESTART_CLOCK",payload: ""} );
       dispatch({type: "SHARE_SUP_STARTED"});
       let data = {email: _email, supId: _supId };
       retryAxiosNtimesPost(4,0,"/back/supplement/rest/inviteByMail",data)
@@ -113,6 +118,7 @@ export function  shareByMail(_supId,_email) {
 export function  openShareByQR(supId) {
   return  function(dispatch){
      dispatch({type: "OPEN_SHARE_BY_QR"} );
+     dispatch({  type: "RESTART_CLOCK",payload: ""} );
       console.log(supId)  ;
      $('#qrModal'+supId).modal('open');
   }
@@ -121,6 +127,7 @@ export function  openShareByQR(supId) {
 export function  shareByQR(_supId,_email) {
   return  function(dispatch){
   dispatch({type: "SHARE_SUP_QR"});
+  dispatch({  type: "RESTART_CLOCK",payload: ""} );
       retryAxiosNtimesPost(4,0,"/back/supplement/rest/inviteByQR",{"supId":_supId, "email":_email})
        // axios.post("/back/supplement/rest/inviteByQR",{"supId":_supId, "email":_email})
         .then(response =>{
