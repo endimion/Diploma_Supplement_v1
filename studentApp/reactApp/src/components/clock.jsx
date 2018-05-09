@@ -27,10 +27,15 @@ export default class Clock extends React.Component {
 
 
   componentDidMount(){
-    this.props.dispatch(restartClock());
-    setInterval(function() { this.reduceTimeFunc(); }.bind(this), 1000);
+    if(this.props.isMain === true){
+        this.props.dispatch(restartClock());
+        setInterval(function() { this.reduceTimeFunc(); }.bind(this), 1000);
+    }
   }
 
+  componentWillMount(){
+    // this.props.dispatch(restartClock());
+  }
 
 
 

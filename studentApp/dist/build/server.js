@@ -941,7 +941,7 @@ function logout() {
 function reduceTime(minutes, seconds) {
   console.log("reduce time called with ", minutes, seconds);
 
-  if (minutes === 0 && seconds === 1) {
+  if (minutes === 0 && seconds === 0) {
     document.cookie = "access_token" + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/;';
     window.location = "/app/logout";
     return { type: "LOG_OUT" };
@@ -1897,7 +1897,7 @@ var NavigationBar = function (_React$Component) {
               'a',
               { href: '#!', className: 'brand-logo hide-on-large-only', style: { left: "30%" } },
               ' ',
-              _react2.default.createElement(_clock2.default, null)
+              _react2.default.createElement(_clock2.default, { isMain: true })
             ),
             _react2.default.createElement(
               'a',
@@ -1908,7 +1908,7 @@ var NavigationBar = function (_React$Component) {
               'a',
               { href: '#!', className: 'brand-logo hide-on-med-and-down' },
               ' ',
-              _react2.default.createElement(_clock2.default, null)
+              _react2.default.createElement(_clock2.default, { isMain: false })
             ),
             _react2.default.createElement(
               'a',
@@ -2894,10 +2894,17 @@ var Clock = (_dec = (0, _reactRedux.connect)(function (store) {
   _createClass(Clock, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.props.dispatch((0, _userActions.restartClock)());
-      setInterval(function () {
-        this.reduceTimeFunc();
-      }.bind(this), 1000);
+      if (this.props.isMain === true) {
+        this.props.dispatch((0, _userActions.restartClock)());
+        setInterval(function () {
+          this.reduceTimeFunc();
+        }.bind(this), 1000);
+      }
+    }
+  }, {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      // this.props.dispatch(restartClock());
     }
   }, {
     key: 'reduceTimeFunc',
@@ -2936,7 +2943,7 @@ var Clock = (_dec = (0, _reactRedux.connect)(function (store) {
             ' ',
             _react2.default.createElement(
               'i',
-              { style: { marginLeft: "1rem" }, className: 'material-icons', onClick: this.restartClock },
+              { style: { marginLeft: "1rem", marginRight: "0" }, className: 'material-icons', onClick: this.restartClock },
               'refresh'
             )
           ),
@@ -5778,7 +5785,7 @@ function reducer() {
   var action = arguments[1];
 
 
-  var maxMinutes = process.env.SESSION_TIMEOUT | 2;
+  var maxMinutes = process.env.SESSION_TIMEOUT | 4;
 
   switch (action.type) {
 
