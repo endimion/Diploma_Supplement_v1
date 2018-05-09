@@ -6,7 +6,7 @@ export default function reducer(state={
     startSeconds: null//(new Date()).getSeconds()
 },action){
 
-  const maxMinutes = process.env.SESSION_TIMEOUT|2;
+  const maxMinutes = process.env.SESSION_TIMEOUT|4;
 
   switch(action.type){
 
