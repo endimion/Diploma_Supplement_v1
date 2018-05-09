@@ -58,7 +58,7 @@ export default class Clock extends React.Component {
     return (
       <span>
         <span className="hide-on-large-only" style={{marginLeft:"1rem", fontSize: "0.8rem"}}>
-          <span > <i style={{marginLeft: "1rem" }} class="material-icons" onClick={this.restartClock}>refresh</i></span>
+          <span > <i style={{marginLeft: "1rem", marginRight:"0" }} class="material-icons" onClick={this.restartClock}>refresh</i></span>
           <span style={{marginRight: "1rem",fontSize: "1.5rem"}}><i>{minutes + ":" + seconds}</i></span>
         </span>
         <span className="hide-on-med-and-down" style={{fontSize: "1rem"}}>
