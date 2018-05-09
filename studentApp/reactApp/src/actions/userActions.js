@@ -34,7 +34,7 @@ export function setUser(user) {
  export function reduceTime(minutes,seconds){
    console.log("reduce time called with ", minutes, seconds);
 
-   if(minutes === 0 && seconds === 1){
+   if(minutes === 0 && seconds === 0){
       document.cookie = "access_token" + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/;';
      window.location="/app/logout";
      return { type:"LOG_OUT"}
