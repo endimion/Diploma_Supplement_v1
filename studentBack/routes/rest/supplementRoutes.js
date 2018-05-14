@@ -289,25 +289,23 @@ router.post('/inviteByMail',authorizeAll,(req,res) =>{
 
         let body = `Hi!
                     <p>You're receiving this transactional email message because `+senderEngName +` `+senderEngLastName+` wants to share with you an e-Diploma Supplement.</p>
-                    </br>
+                    <br/>
                     <p>Click`+`<a href="`+ process.env.SRV_ADDR + `/app/invite/` +inviteHash +`"> HERE </a>`+`to get the shared e-Diiploma Supplement in
                     <ul>
                      <li>pdf form</li>
                      <li>machine readable form (xml)</li>
                     </ul>
                     </p>
-                    </br>
                     <p>
                       For Instructions of How To Use e-Diploma Supplement Service, please click on`+ `<a href="https://docs.google.com/document/d/1TgoAwXimaL1Q6jqIxEM1qLN9VwHBZr8zkMQ8fonOYa0/edit"> EXPLORE </a>`+`
                     </p>
-                    </br>
                     <p>
                       This email is sent from an automated account which is not monitored, so we are not able to respond to replies to this email.
                     </p>
                     <p>
-                      Thank you! The administration team</br>
-                      e-Diploma Supplement Service</br>
-                      email:  <a mailto="eidapps@atlantis-group.gr">eidapps@atlantis-group.gr</a>
+                      Thank you! The administration team<br/>
+                      e-Diploma Supplement Service<br/>
+                      email:  <a href="mailto:eidapps@atlantis-group.gr">eidapps@atlantis-group.gr</a>
                     </p>
                     ` ;
         // console.log(inviteHash + eid);
@@ -382,14 +380,13 @@ router.post('/invite/:inviteHash/sendMail',authorizeAll,(req,res) =>{
                     <p>
                       For Instructions of How To Use e-Diploma Supplement Service, please click on`+ `<a href="https://docs.google.com/document/d/1TgoAwXimaL1Q6jqIxEM1qLN9VwHBZr8zkMQ8fonOYa0/edit"> EXPLORE </a>`+`
                     </p>
-                    </br>
                     <p>
                       This email is sent from an automated account which is not monitored, so we are not able to respond to replies to this email.
                     </p>
                     <p>
                       Thank you! The administration team<br/>
                       e-Diploma Supplement Service<br/>
-                      email:  <a mailto="eidapps@atlantis-group.gr">eidapps@atlantis-group.gr</a>
+                      email:  <a href="mailto:eidapps@atlantis-group.gr">eidapps@atlantis-group.gr</a>
                     </p>
                     `;
 
