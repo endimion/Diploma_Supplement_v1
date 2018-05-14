@@ -287,22 +287,27 @@ router.post('/inviteByMail',authorizeAll,(req,res) =>{
         //let senderName =
 
 
-        let body = `Hi!,
+        let body = `Hi!
                     <p>You're receiving this transactional email message because `+senderEngName +` `+senderEngLastName+` wants to share with you an e-Diploma Supplement.</p>
+                    </br>
                     <p>Click`+`<a href="`+ process.env.SRV_ADDR + `/app/invite/` +inviteHash +`"> HERE </a>`+`to get the shared e-Diiploma Supplement in
                     <ul>
                      <li>pdf form</li>
                      <li>machine readable form (xml)</li>
                     </ul>
                     </p>
+                    </br>
                     <p>
                       For Instructions of How To Use e-Diploma Supplement Service, please click on`+ `<a href="https://docs.google.com/document/d/1TgoAwXimaL1Q6jqIxEM1qLN9VwHBZr8zkMQ8fonOYa0/edit"> EXPLORE </a>`+`
+                    </p>
+                    </br>
+                    <p>
                       This email is sent from an automated account which is not monitored, so we are not able to respond to replies to this email.
                       Thank you! The administration team
                     </p>
                     <p>
                       e-Diploma Supplement Service
-                      email: edss@aegean.gr
+                      email:  eidapps@atlantis-group.gr 
                     </p>
                     ` ;
         // console.log(inviteHash + eid);
@@ -366,8 +371,29 @@ router.post('/invite/:inviteHash/sendMail',authorizeAll,(req,res) =>{
       basic.invokeChaincode([peerAddr], channel, chaincode, "addCodeForDSInvite",
       																	[inviteHash,validationCode],eid, org)
                 .then(resp => {
-                  let emailBody = '<p>Your validation code is: ' +validationCode+'</p>';
-                  console.log(emailBody);
+                  let emailBody =  //'<p>Your validation code is: ' +validationCode+'</p>';
+                  `
+                    You're receiving this transactional email message because you have initiated a process of receiving an e-Diploma Supplement
+                    Your validation code to access the shared e-Diploma Supplement is:`
+                  + validationCode
+
+                  + ` <p>
+                      For Instructions of How To Use e-Diploma Supplement Service, please click on`+ `<a href="https://docs.google.com/document/d/1TgoAwXimaL1Q6jqIxEM1qLN9VwHBZr8zkMQ8fonOYa0/edit"> EXPLORE </a>`+`
+                    </p>
+                    </br>
+                    <p>
+                      This email is sent from an automated account which is not monitored, so we are not able to respond to replies to this email.
+                      Thank you! The administration team
+                    </p>
+                    <p>
+                      e-Diploma Supplement Service
+                      email:  eidapps@atlantis-group.gr
+                    </p>
+                    `;
+
+
+
+                  // console.log(emailBody);
                   basic.queryChaincode(peer, channel, chaincode, [inviteHash], "getDiplomaSupplementInvitesByHash", eid, org)
                   .then( resp =>{
                     let dsInvite = JSON.parse(resp);
