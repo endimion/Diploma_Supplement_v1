@@ -387,8 +387,8 @@ router.post('/invite/:inviteHash/sendMail',authorizeAll,(req,res) =>{
                       This email is sent from an automated account which is not monitored, so we are not able to respond to replies to this email.
                     </p>
                     <p>
-                      Thank you! The administration team</br>
-                      e-Diploma Supplement Service</br>
+                      Thank you! The administration team<br/>
+                      e-Diploma Supplement Service<br/>
                       email:  <a mailto="eidapps@atlantis-group.gr">eidapps@atlantis-group.gr</a>
                     </p>
                     `;
