@@ -307,7 +307,7 @@ router.post('/inviteByMail',authorizeAll,(req,res) =>{
                     </p>
                     <p>
                       e-Diploma Supplement Service
-                      email:  eidapps@atlantis-group.gr 
+                      email:  eidapps@atlantis-group.gr
                     </p>
                     ` ;
         // console.log(inviteHash + eid);
@@ -373,11 +373,13 @@ router.post('/invite/:inviteHash/sendMail',authorizeAll,(req,res) =>{
                 .then(resp => {
                   let emailBody =  //'<p>Your validation code is: ' +validationCode+'</p>';
                   `
-                    You're receiving this transactional email message because you have initiated a process of receiving an e-Diploma Supplement
+                    <p>
+                    You're receiving this transactional email message because you have initiated a process for receiving an e-Diploma Supplement
                     Your validation code to access the shared e-Diploma Supplement is:`
                   + validationCode
-
-                  + ` <p>
+                  + `</p>`
+                  + `
+                    <p>
                       For Instructions of How To Use e-Diploma Supplement Service, please click on`+ `<a href="https://docs.google.com/document/d/1TgoAwXimaL1Q6jqIxEM1qLN9VwHBZr8zkMQ8fonOYa0/edit"> EXPLORE </a>`+`
                     </p>
                     </br>
