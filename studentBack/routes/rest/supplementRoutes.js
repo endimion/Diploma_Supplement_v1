@@ -289,7 +289,6 @@ router.post('/inviteByMail',authorizeAll,(req,res) =>{
 
         let body = `Hi!
                     <p>You're receiving this transactional email message because `+senderEngName +` `+senderEngLastName+` wants to share with you an e-Diploma Supplement.</p>
-                    <br/>
                     <p>Click`+`<a href="`+ process.env.SRV_ADDR + `/app/invite/` +inviteHash +`"> HERE </a>`+`to get the shared e-Diiploma Supplement in
                     <ul>
                      <li>pdf form</li>
