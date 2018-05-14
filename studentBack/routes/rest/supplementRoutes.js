@@ -303,11 +303,11 @@ router.post('/inviteByMail',authorizeAll,(req,res) =>{
                     </br>
                     <p>
                       This email is sent from an automated account which is not monitored, so we are not able to respond to replies to this email.
-                      Thank you! The administration team
                     </p>
                     <p>
-                      e-Diploma Supplement Service
-                      email:  eidapps@atlantis-group.gr
+                      Thank you! The administration team</br>
+                      e-Diploma Supplement Service</br>
+                      email:  <a mailto="eidapps@atlantis-group.gr">eidapps@atlantis-group.gr</a>
                     </p>
                     ` ;
         // console.log(inviteHash + eid);
@@ -385,11 +385,11 @@ router.post('/invite/:inviteHash/sendMail',authorizeAll,(req,res) =>{
                     </br>
                     <p>
                       This email is sent from an automated account which is not monitored, so we are not able to respond to replies to this email.
-                      Thank you! The administration team
                     </p>
                     <p>
-                      e-Diploma Supplement Service
-                      email:  eidapps@atlantis-group.gr
+                      Thank you! The administration team</br>
+                      e-Diploma Supplement Service</br>
+                      email:  <a mailto="eidapps@atlantis-group.gr">eidapps@atlantis-group.gr</a>
                     </p>
                     `;
 
