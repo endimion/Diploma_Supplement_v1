@@ -372,6 +372,7 @@ router.post('/invite/:inviteHash/sendMail',authorizeAll,(req,res) =>{
                   `
                     <p>
                     You're receiving this transactional email message because you have initiated a process for receiving an e-Diploma Supplement
+                    <br/>
                     Your validation code to access the shared e-Diploma Supplement is:`
                   + validationCode
                   + `</p>`
